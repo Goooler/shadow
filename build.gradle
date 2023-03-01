@@ -76,8 +76,8 @@ tasks.register('downloadDependencies', Exec) {
 
 publishing {
     publications {
-        shadow(MavenPublication) { publication ->
-            project.shadow.component(publication)
+        test(MavenPublication) { publication ->
+            shadow.component(publication)
             artifactId = 'maven-all'
         }
     }

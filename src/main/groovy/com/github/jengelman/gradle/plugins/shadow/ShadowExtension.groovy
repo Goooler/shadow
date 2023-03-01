@@ -26,10 +26,11 @@ class ShadowExtension {
             publication.artifact(project.tasks.shadowJar)
         }
 
+        final def allDependencies = project.configurations.shadow.allDependencies
         publication.pom { MavenPom pom ->
             pom.withXml { xml ->
                 def dependenciesNode = xml.asNode().get('dependencies') ?: xml.asNode().appendNode('dependencies')
-                project.configurations.shadow.allDependencies.each {
+                allDependencies.each {
                     if ((it instanceof ProjectDependency) || ! (it instanceof SelfResolvingDependency)) {
                         def dependencyNode = dependenciesNode.appendNode('dependency')
                         dependencyNode.appendNode('groupId', it.group)
