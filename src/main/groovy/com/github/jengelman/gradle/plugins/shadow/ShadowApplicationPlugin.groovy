@@ -93,7 +93,7 @@ class ShadowApplicationPlugin implements Plugin<Project> {
     }
 
     protected void configureInstallTask(Project project) {
-        final def appName = javaApplication.applicationName
+        final def appName = project.provider { javaApplication.applicationName }
         project.tasks.named(SHADOW_INSTALL_TASK_NAME, Sync).configure { task ->
             task.doFirst {
                 if (task.destinationDir.directory) {
@@ -106,13 +106,7 @@ class ShadowApplicationPlugin implements Plugin<Project> {
                 }
             }
             task.doLast {
-                project.ant.chmod(file: "${task.destinationDir.absolutePath}/bin/$appName", perm: 'ugo+x')
-            }
-            // https://github.com/johnrengelman/shadow/issues/775
-            task.eachFile {
-                if (it.path == "bin/$appName") {
-                    it.mode = 0x755
-                }
+                project.ant.chmod(file: "${task.destinationDir.absolutePath}/bin/${appName.get()}", perm: 'ugo+x')
             }
         }
     }
