@@ -24,7 +24,7 @@ class ShadowExtension {
 
         final def allDependencies = project.provider {
             project.configurations.shadow.allDependencies.collect {
-                if ((it instanceof ProjectDependency) || ! (it instanceof SelfResolvingDependency)) {
+                if ((it instanceof ProjectDependency) || !(it instanceof SelfResolvingDependency)) {
                     new Dep(it.group, it.name, it.version)
                 }
             }
