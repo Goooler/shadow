@@ -14,7 +14,7 @@ class DefaultInheritManifest implements InheritManifest {
 
     private List<DefaultManifestMergeSpec> inheritMergeSpecs = []
 
-    private final Project project
+    private final transient Project project
 
     private final FileResolver fileResolver
 
