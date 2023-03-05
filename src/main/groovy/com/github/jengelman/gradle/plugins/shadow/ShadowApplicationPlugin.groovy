@@ -106,11 +106,11 @@ class ShadowApplicationPlugin implements Plugin<Project> {
             }
             task.doLast {
                 project.ant.chmod(file: "${task.destinationDir.absolutePath}/bin/${javaApplication.applicationName}", perm: 'ugo+x')
-                // https://github.com/johnrengelman/shadow/issues/775
-                task.eachFile {
-                    if (it.path == "bin/${javaApplication.applicationName}") {
-                        it.mode = 0x755
-                    }
+            }
+            // https://github.com/johnrengelman/shadow/issues/775
+            task.eachFile {
+                if (it.path == "bin/${javaApplication.applicationName}") {
+                    it.mode = 0x755
                 }
             }
         }
