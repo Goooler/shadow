@@ -1,22 +1,24 @@
 package com.github.jengelman.gradle.plugins.shadow
 
 import org.gradle.api.Project
+import org.gradle.api.Task
 import org.gradle.api.artifacts.ProjectDependency
 import org.gradle.api.artifacts.SelfResolvingDependency
+import org.gradle.api.provider.Provider
 import org.gradle.api.publish.maven.MavenPom
 import org.gradle.api.publish.maven.MavenPublication
 
 class ShadowExtension {
-    private final def shadowJar
-    private final def allDependencies
+    private final Provider<Task> shadowJar
+    private final Provider<List<Dep>> allDependencies
 
     ShadowExtension(Project project) {
         shadowJar = project.provider { project.tasks.getByName("shadowJar") }
         allDependencies = project.provider {
-            project.configurations.shadow.allDependencies.collect {
-                if ((it instanceof ProjectDependency) || !(it instanceof SelfResolvingDependency)) {
-                    new Dep(it.group, it.name, it.version)
-                }
+            project.configurations.getByName("shadow").allDependencies.findAll {
+                it instanceof ProjectDependency || it instanceof SelfResolvingDependency
+            }.collect {
+                new Dep(it.group, it.name, it.version)
             }
         }
     }
