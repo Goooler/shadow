@@ -94,6 +94,7 @@ class ShadowApplicationPlugin implements Plugin<Project> {
 
     protected void configureInstallTask(Project project) {
         final def appName = project.provider { javaApplication.applicationName }
+        final def ant = project.provider { project.ant }
         project.tasks.named(SHADOW_INSTALL_TASK_NAME, Sync).configure { task ->
             task.doFirst {
                 if (task.destinationDir.directory) {
@@ -106,7 +107,7 @@ class ShadowApplicationPlugin implements Plugin<Project> {
                 }
             }
             task.doLast {
-                project.ant.chmod(file: "${task.destinationDir.absolutePath}/bin/${appName.get()}", perm: 'ugo+x')
+                ant.get().chmod(file: "${task.destinationDir.absolutePath}/bin/${appName.get()}", perm: 'ugo+x')
             }
         }
     }
