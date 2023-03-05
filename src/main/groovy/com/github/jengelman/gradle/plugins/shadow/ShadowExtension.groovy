@@ -8,8 +8,13 @@ import org.gradle.api.publish.maven.MavenPublication
 import org.gradle.util.GradleVersion
 
 class ShadowExtension {
+    private final transient Project project
 
-    void component(Project project, MavenPublication publication) {
+    ShadowExtension(Project project) {
+        this.project = project
+    }
+
+    void component(MavenPublication publication) {
 
         if (GradleVersion.current() >= GradleVersion.version("6.6")) {
             publication.artifact(project.tasks.named("shadowJar"))
