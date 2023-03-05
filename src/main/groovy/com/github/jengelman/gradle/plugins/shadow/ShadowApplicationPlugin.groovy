@@ -93,7 +93,6 @@ class ShadowApplicationPlugin implements Plugin<Project> {
     }
 
     protected void configureInstallTask(Project project) {
-        final def appName = project.provider { javaApplication.applicationName }
         project.tasks.named(SHADOW_INSTALL_TASK_NAME, Sync).configure { task ->
             task.doFirst {
                 if (task.destinationDir.directory) {
@@ -107,7 +106,7 @@ class ShadowApplicationPlugin implements Plugin<Project> {
             }
             task.doLast {
                 task.eachFile {
-                    if (it.path == "bin/${appName.get()}") {
+                    if (it.path == "bin/${javaApplication.applicationName}") {
                         it.mode = 0x755
                     }
                 }
