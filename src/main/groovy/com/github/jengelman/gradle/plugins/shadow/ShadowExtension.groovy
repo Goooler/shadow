@@ -26,10 +26,10 @@ class ShadowExtension {
     void component(MavenPublication publication) {
         publication.artifact(shadowJar)
 
-        final def allDeps = allDependencies
         publication.pom { MavenPom pom ->
             pom.withXml { xml ->
                 def dependenciesNode = xml.asNode().get('dependencies') ?: xml.asNode().appendNode('dependencies')
+                final def allDeps = allDependencies
                 allDeps.get().each {
                     def dependencyNode = dependenciesNode.appendNode('dependency')
                     dependencyNode.appendNode('groupId', it.group)
