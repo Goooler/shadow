@@ -5,14 +5,13 @@ import org.gradle.api.artifacts.ProjectDependency
 import org.gradle.api.artifacts.SelfResolvingDependency
 import org.gradle.api.publish.maven.MavenPom
 import org.gradle.api.publish.maven.MavenPublication
-import org.gradle.util.GradleVersion
 
 class ShadowExtension {
-    private final Project project
+    private final def shadowJar
     private final def allDependencies
 
     ShadowExtension(Project project) {
-        this.project = project
+        shadowJar = project.provider { project.tasks.getByName("shadowJar") }
         allDependencies = project.provider {
             project.configurations.shadow.allDependencies.collect {
                 if ((it instanceof ProjectDependency) || !(it instanceof SelfResolvingDependency)) {
@@ -23,12 +22,7 @@ class ShadowExtension {
     }
 
     void component(MavenPublication publication) {
-
-        if (GradleVersion.current() >= GradleVersion.version("6.6")) {
-            publication.artifact(project.tasks.named("shadowJar"))
-        } else {
-            publication.artifact(project.tasks.shadowJar)
-        }
+        publication.artifact(shadowJar)
 
         publication.pom { MavenPom pom ->
             pom.withXml { xml ->
