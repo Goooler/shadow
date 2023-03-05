@@ -8,10 +8,18 @@ import org.gradle.api.publish.maven.MavenPublication
 import org.gradle.util.GradleVersion
 
 class ShadowExtension {
-    private final transient Project project
+    private final Project project
+    private final def allDependencies
 
     ShadowExtension(Project project) {
         this.project = project
+        allDependencies = project.provider {
+            project.configurations.shadow.allDependencies.collect {
+                if ((it instanceof ProjectDependency) || !(it instanceof SelfResolvingDependency)) {
+                    new Dep(it.group, it.name, it.version)
+                }
+            }
+        }
     }
 
     void component(MavenPublication publication) {
@@ -22,13 +30,6 @@ class ShadowExtension {
             publication.artifact(project.tasks.shadowJar)
         }
 
-        final def allDependencies = project.provider {
-            project.configurations.shadow.allDependencies.collect {
-                if ((it instanceof ProjectDependency) || !(it instanceof SelfResolvingDependency)) {
-                    new Dep(it.group, it.name, it.version)
-                }
-            }
-        }
         publication.pom { MavenPom pom ->
             pom.withXml { xml ->
                 def dependenciesNode = xml.asNode().get('dependencies') ?: xml.asNode().appendNode('dependencies')
