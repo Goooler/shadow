@@ -27,6 +27,7 @@ class ShadowExtension {
     void component(MavenPublication publication) {
         publication.artifact(archiveFile.get())
 
+        // Don't inline this variable, it seems Groovy closure capturing is confused by the field instead of a local variable.
         final def allDeps = allDependencies
         publication.pom { MavenPom pom ->
             pom.withXml { xml ->
