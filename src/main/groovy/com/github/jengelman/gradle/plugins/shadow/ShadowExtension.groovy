@@ -16,10 +16,10 @@ class ShadowExtension {
     ShadowExtension(Project project) {
         archiveFile = project.provider { project.tasks.withType(ShadowJar).getByName("shadowJar").archiveFile }
         allDependencies = project.provider {
-            project.configurations.getByName("shadow").allDependencies.findAll {
-                it instanceof ProjectDependency || it instanceof SelfResolvingDependency
-            }.collect {
-                new Dep(it.group, it.name, it.version)
+            project.configurations.getByName("shadow").allDependencies.collect {
+                if ((it instanceof ProjectDependency) || !(it instanceof SelfResolvingDependency)) {
+                    new Dep(it.group, it.name, it.version)
+                }
             }
         }
     }
