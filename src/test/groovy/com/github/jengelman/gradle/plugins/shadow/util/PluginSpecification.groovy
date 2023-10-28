@@ -11,7 +11,7 @@ import spock.lang.Specification
 import java.util.jar.JarEntry
 import java.util.jar.JarFile
 
-class PluginSpecification extends Specification {
+abstract class PluginSpecification extends Specification {
 
     @Rule TemporaryFolder dir
 
@@ -79,7 +79,7 @@ class PluginSpecification extends Specification {
         return result
     }
 
-    void assertNoDeprecationWarnings(BuildResult result) {
+    static void assertNoDeprecationWarnings(BuildResult result) {
         result.output.eachLine {
             assert !containsDeprecationWarning(it)
         }
