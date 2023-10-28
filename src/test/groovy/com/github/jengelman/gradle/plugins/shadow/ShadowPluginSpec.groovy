@@ -7,7 +7,6 @@ import org.gradle.api.artifacts.Configuration
 import org.gradle.api.plugins.JavaPlugin
 import org.gradle.testfixtures.ProjectBuilder
 import org.gradle.testkit.runner.BuildResult
-import org.gradle.testkit.runner.GradleRunner
 import spock.lang.Ignore
 import spock.lang.Issue
 import spock.lang.Unroll
@@ -56,12 +55,6 @@ class ShadowPluginSpec extends PluginSpecification {
     @Unroll
     def 'Compatible with Gradle #version'() {
         given:
-        GradleRunner versionRunner = runner
-                .withGradleVersion(version)
-                .withArguments('--stacktrace')
-                .withDebug(true)
-
-
         File one = buildJar('one.jar').insertFile('META-INF/services/shadow.Shadow',
                 'one # NOTE: No newline terminates this line/file').write()
 
@@ -80,7 +73,10 @@ class ShadowPluginSpec extends PluginSpecification {
         """.stripIndent()
 
         when:
-        versionRunner.withArguments('shadowJar', '--stacktrace').build()
+        runner(['shadowJar'])
+                .withGradleVersion(version)
+                .withDebug(true)
+                .build()
 
         then:
         assert output.exists()
@@ -91,12 +87,6 @@ class ShadowPluginSpec extends PluginSpecification {
 
     def 'Error in Gradle versions < 8.3'() {
         given:
-        GradleRunner versionRunner = runner
-                .withGradleVersion('7.0')
-                .withArguments('--stacktrace')
-                .withDebug(true)
-                .withTestKitDir(getTestKitDir())
-
         buildFile << """
             dependencies {
               implementation 'junit:junit:3.8.2'
@@ -108,7 +98,11 @@ class ShadowPluginSpec extends PluginSpecification {
         """.stripIndent()
 
         expect:
-        versionRunner.withArguments('shadowJar', '--stacktrace').buildAndFail()
+        runner(['shadowJar'])
+                .withGradleVersion('7.0')
+                .withDebug(true)
+                .withTestKitDir(getTestKitDir())
+                .buildAndFail()
     }
 
     def 'shadow copy'() {

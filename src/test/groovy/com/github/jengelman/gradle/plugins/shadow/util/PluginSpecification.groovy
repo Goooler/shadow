@@ -59,6 +59,10 @@ class PluginSpecification extends Specification {
                 .withPluginClasspath()
     }
 
+    GradleRunner runner(Collection<String> tasks) {
+        runner.withArguments(["-Dorg.gradle.warning.mode=all", "--configuration-cache", "--stacktrace"] + tasks.toList())
+    }
+
     BuildResult run(String... tasks) {
         run(tasks.toList())
     }
@@ -73,10 +77,6 @@ class PluginSpecification extends Specification {
         def result = runner(tasks.toList()).withDebug(true).build()
         assertNoDeprecationWarnings(result)
         return result
-    }
-
-    GradleRunner runner(Collection<String> tasks) {
-        runner.withArguments(["-Dorg.gradle.warning.mode=all", "--configuration-cache", "--stacktrace"] + tasks.toList())
     }
 
     void assertNoDeprecationWarnings(BuildResult result) {
