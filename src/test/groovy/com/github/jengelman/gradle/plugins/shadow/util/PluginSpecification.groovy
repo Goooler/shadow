@@ -8,6 +8,7 @@ import org.junit.Rule
 import org.junit.rules.TemporaryFolder
 import spock.lang.Specification
 
+import java.util.function.Function
 import java.util.jar.JarEntry
 import java.util.jar.JarFile
 
@@ -67,14 +68,18 @@ abstract class PluginSpecification extends Specification {
         run(tasks.toList())
     }
 
-    BuildResult run(List<String> tasks) {
-        def result = runner(tasks).build()
+    BuildResult run(List<String> tasks, Function<GradleRunner, GradleRunner> runnerFunction = { it }) {
+        def result = runnerFunction.apply(runner(tasks)).build()
         assertNoDeprecationWarnings(result)
         return result
     }
 
     BuildResult runWithDebug(String... tasks) {
-        def result = runner(tasks.toList()).withDebug(true).build()
+        return run(tasks.toList(), { it.withDebug(true) })
+    }
+
+    BuildResult runWithFailure(List<String> tasks, Function<GradleRunner, GradleRunner> runnerFunction = { it }) {
+        def result = runnerFunction.apply(runner(tasks)).buildAndFail()
         assertNoDeprecationWarnings(result)
         return result
     }

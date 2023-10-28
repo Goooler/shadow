@@ -7,12 +7,10 @@ import org.gradle.api.artifacts.Configuration
 import org.gradle.api.plugins.JavaPlugin
 import org.gradle.testfixtures.ProjectBuilder
 import org.gradle.testkit.runner.BuildResult
-import org.gradle.testkit.runner.GradleRunner
 import spock.lang.Ignore
 import spock.lang.Issue
 import spock.lang.Unroll
 
-import java.util.function.Function
 import java.util.jar.Attributes
 import java.util.jar.JarFile
 
@@ -75,8 +73,10 @@ class ShadowPluginSpec extends PluginSpecification {
         """.stripIndent()
 
         when:
-        runWithVersion(version) {
-            it.build()
+        run(['shadowJar']) {
+            it.withGradleVersion(version)
+            it.withDebug(true)
+            it.withTestKitDir(getTestKitDir())
         }
 
         then:
@@ -99,8 +99,10 @@ class ShadowPluginSpec extends PluginSpecification {
         """.stripIndent()
 
         expect:
-        runWithVersion('7.0') {
-            it.buildAndFail()
+        runWithFailure(['shadowJar']) {
+            it.withGradleVersion('7.0')
+            it.withDebug(true)
+            it.withTestKitDir(getTestKitDir())
         }
     }
 
@@ -1207,16 +1209,6 @@ class ShadowPluginSpec extends PluginSpecification {
 
         then: 'tests that runShadow executed and exited'
         assert result.output.contains('TestApp: Hello World! (foo)')
-    }
-
-    private BuildResult runWithVersion(String gradleVersion, Collection<String> tasks = ['shadowJar'], Function<GradleRunner, BuildResult> function) {
-        def runner = runner(tasks)
-                .withGradleVersion(gradleVersion)
-                .withDebug(true)
-                .withTestKitDir(getTestKitDir())
-        def result =  function.apply(runner)
-        assertNoDeprecationWarnings(result)
-        return result
     }
 
     private String escapedPath(File file) {
