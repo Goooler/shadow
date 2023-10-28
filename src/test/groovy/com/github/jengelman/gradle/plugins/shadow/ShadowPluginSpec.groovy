@@ -91,11 +91,9 @@ class ShadowPluginSpec extends PluginSpecification {
 
     def 'Error in Gradle versions < 8.3'() {
         given:
-        GradleRunner versionRunner = GradleRunner.create()
+        GradleRunner versionRunner = runner
                 .withGradleVersion('7.0')
                 .withArguments('--stacktrace')
-                .withProjectDir(dir.root)
-                .forwardOutput()
                 .withDebug(true)
                 .withTestKitDir(getTestKitDir())
 
@@ -813,10 +811,6 @@ class ShadowPluginSpec extends PluginSpecification {
 
     def "include java-library configurations by default"() {
         given:
-        GradleRunner versionRunner = runner
-                .withArguments('--stacktrace')
-                .withDebug(true)
-
         repo.module('shadow', 'api', '1.0')
                 .insertFile('api.properties', 'api')
                 .publish()
@@ -844,7 +838,7 @@ class ShadowPluginSpec extends PluginSpecification {
         """.stripIndent()
 
         when:
-        versionRunner.withArguments('shadowJar').build()
+        runWithDebug('shadowJar')
 
         then:
         contains(output, ['api.properties', 'implementation.properties',

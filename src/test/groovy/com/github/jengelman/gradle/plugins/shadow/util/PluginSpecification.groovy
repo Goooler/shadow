@@ -1,7 +1,6 @@
 package com.github.jengelman.gradle.plugins.shadow.util
 
 import com.github.jengelman.gradle.plugins.shadow.util.file.TestFile
-import com.google.common.base.StandardSystemProperty
 import org.codehaus.plexus.util.IOUtil
 import org.gradle.testkit.runner.BuildResult
 import org.gradle.testkit.runner.GradleRunner
@@ -64,11 +63,6 @@ class PluginSpecification extends Specification {
         run(tasks.toList())
     }
 
-    BuildResult runWithDeprecationWarnings(String... tasks) {
-        def result = runner(tasks.toList()).build()
-        return result
-    }
-
     BuildResult run(List<String> tasks) {
         def result = runner(tasks).build()
         assertNoDeprecationWarnings(result)
@@ -94,11 +88,6 @@ class PluginSpecification extends Specification {
     static boolean containsDeprecationWarning(String output) {
         output.contains("has been deprecated and is scheduled to be removed in Gradle") ||
                 output.contains("has been deprecated. This is scheduled to be removed in Gradle")
-    }
-
-    File getLocalRepo() {
-        def rootRelative = new File("build/localrepo")
-        rootRelative.directory ? rootRelative : new File(new File(StandardSystemProperty.USER_DIR.value()).parentFile, "build/localrepo")
     }
 
     File getBuildFile() {
