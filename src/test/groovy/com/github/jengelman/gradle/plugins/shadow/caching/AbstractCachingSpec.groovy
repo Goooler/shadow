@@ -39,7 +39,7 @@ abstract class AbstractCachingSpec extends PluginSpecification {
     BuildResult runInAlternateDirWithCacheEnabled(String... arguments) {
         List<String> cacheArguments = [ '--build-cache' ]
         cacheArguments.addAll(arguments)
-        return runner.withProjectDir(alternateDir.root).withArguments(cacheArguments).build()
+        return runner(cacheArguments).withProjectDir(alternateDir.root).build()
     }
 
     private String escapedPath(File file) {
