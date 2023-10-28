@@ -73,10 +73,11 @@ class ShadowPluginSpec extends PluginSpecification {
         """.stripIndent()
 
         when:
-        runner(['shadowJar'])
+        def result = runner(['shadowJar'])
                 .withGradleVersion(version)
                 .withDebug(true)
                 .build()
+        assertNoDeprecationWarnings(result)
 
         then:
         assert output.exists()
@@ -98,11 +99,12 @@ class ShadowPluginSpec extends PluginSpecification {
         """.stripIndent()
 
         expect:
-        runner(['shadowJar'])
+        def result = runner(['shadowJar'])
                 .withGradleVersion('7.0')
                 .withDebug(true)
                 .withTestKitDir(getTestKitDir())
                 .buildAndFail()
+        assertNoDeprecationWarnings(result)
     }
 
     def 'shadow copy'() {
