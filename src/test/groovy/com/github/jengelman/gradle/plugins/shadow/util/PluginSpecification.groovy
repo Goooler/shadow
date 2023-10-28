@@ -21,8 +21,7 @@ class PluginSpecification extends Specification {
 
     def setup() {
         repo = repo()
-        def junitVersion = '4.13.2'
-        repo.module('junit', 'junit', junitVersion).use(getTestJar(junitVersion)).publish()
+        repo.module('junit', 'junit', '3.8.2').use(testJar).publish()
 
         buildFile << defaultBuildScript
 
@@ -158,8 +157,8 @@ class PluginSpecification extends Specification {
         getFile("build/libs/${name}")
     }
 
-    protected File getTestJar(String version) {
-        return new File(this.class.classLoader.getResource("junit-${version}.jar").toURI())
+    protected File getTestJar(String name = 'junit-3.8.2.jar') {
+        return new File(this.class.classLoader.getResource(name).toURI())
     }
 
     static File getTestKitDir() {
