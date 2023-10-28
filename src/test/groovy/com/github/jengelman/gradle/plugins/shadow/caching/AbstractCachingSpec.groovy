@@ -9,6 +9,7 @@ import org.junit.rules.TemporaryFolder
 
 import static org.gradle.testkit.runner.TaskOutcome.FROM_CACHE
 import static org.gradle.testkit.runner.TaskOutcome.SUCCESS
+import static org.gradle.testkit.runner.TaskOutcome.UP_TO_DATE
 
 abstract class AbstractCachingSpec extends PluginSpecification {
     @Rule TemporaryFolder alternateDir
@@ -68,7 +69,7 @@ abstract class AbstractCachingSpec extends PluginSpecification {
         // check that shadowJar pulls from cache in the original directory
         assertShadowJarHasResult(FROM_CACHE)
         // check that shadowJar pulls from cache in a different directory
-        assertShadowJarHasResultInAlternateDir(FROM_CACHE)
+        assertShadowJarHasResultInAlternateDir(UP_TO_DATE)
     }
 
     void assertShadowJarExecutes() {
