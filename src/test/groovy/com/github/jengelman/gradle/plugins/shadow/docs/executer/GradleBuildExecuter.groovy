@@ -72,7 +72,7 @@ include 'api', 'main'
         build.text = """
 plugins {
     id 'java'
-    id 'com.github.johnrengelman.shadow'
+    id 'io.github.goooler.shadow'
 }
 
 repositories {

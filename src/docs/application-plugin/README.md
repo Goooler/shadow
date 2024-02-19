@@ -11,9 +11,11 @@ configured to contain the `Main-Class` attribute with the value specified in the
 // Using Shadow with Application Plugin
 apply plugin: 'java'
 apply plugin: 'application'
-apply plugin: 'com.github.johnrengelman.shadow'
+apply plugin: 'io.github.goooler.shadow'
 
-mainClassName = 'myapp.Main'
+application {
+    mainClass = 'myapp.Main'
+}
 ```
 
 ## Running the Shadow JAR
