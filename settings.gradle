@@ -15,7 +15,7 @@ dependencyResolutionManagement {
     }
 }
 
-def isCI = providers.systemProperty('CI').present
+def isCI = providers.environmentVariable('CI').present
 
 develocity {
     buildScan {
