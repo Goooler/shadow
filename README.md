@@ -8,8 +8,11 @@ Read the [User Guide](https://imperceptiblethoughts.com/shadow/)!
 
 ## Current Status
 
-[![Download](https://img.shields.io/gradle-plugin-portal/v/com.github.johnrengelman.shadow)](https://plugins.gradle.org/plugin/com.github.johnrengelman.shadow)
-[![Circle CI](https://circleci.com/gh/johnrengelman/shadow.png?style=badge)](https://app.circleci.com/pipelines/github/johnrengelman/shadow)
+[![Maven Central](https://img.shields.io/maven-central/v/io.github.goooler.shadow/shadow-gradle-plugin)](https://central.sonatype.com/artifact/io.github.goooler.shadow/shadow-gradle-plugin)
+[![Sonatype Nexus (Snapshots)](https://img.shields.io/nexus/s/io.github.goooler.shadow/shadow-gradle-plugin?&server=https://s01.oss.sonatype.org/)](https://s01.oss.sonatype.org/content/repositories/snapshots/io/github/goooler/shadow/shadow-gradle-plugin)
+[![Plugin Portal](https://img.shields.io/gradle-plugin-portal/v/io.github.goooler.shadow)](https://plugins.gradle.org/plugin/io.github.goooler.shadow)
+[![CI](https://github.com/Goooler/shadow/actions/workflows/main.yml/badge.svg?branch=trunk&event=push)](https://github.com/Goooler/shadow/actions/workflows/main.yml?query=branch:trunk+event:push)
+[![License](https://img.shields.io/github/license/goooler/shadow.svg)](LICENSE)
 
 ## Latest Test Compatibility
 

@@ -182,7 +182,7 @@ class ShadowPluginSpec extends PluginSpecification {
 
         file('server/build.gradle') << """
             apply plugin: 'java'
-            apply plugin: 'com.github.johnrengelman.shadow'
+            apply plugin: 'io.github.goooler.shadow'
 
             repositories { maven { url "${repo.uri}" } }
             dependencies { implementation project(':client') }
@@ -236,7 +236,7 @@ class ShadowPluginSpec extends PluginSpecification {
 
         file('server/build.gradle') << """
             apply plugin: 'java'
-            apply plugin: 'com.github.johnrengelman.shadow'
+            apply plugin: 'io.github.goooler.shadow'
 
             shadowJar {
                 minimize()
@@ -289,7 +289,7 @@ class ShadowPluginSpec extends PluginSpecification {
 
         file('server/build.gradle') << """
             apply plugin: 'java'
-            apply plugin: 'com.github.johnrengelman.shadow'
+            apply plugin: 'io.github.goooler.shadow'
 
             shadowJar {
                 minimize {
@@ -342,7 +342,7 @@ class ShadowPluginSpec extends PluginSpecification {
 
         file('server/build.gradle') << """
             apply plugin: 'java'
-            apply plugin: 'com.github.johnrengelman.shadow'
+            apply plugin: 'io.github.goooler.shadow'
 
             shadowJar {
                 minimize {
@@ -397,7 +397,7 @@ class ShadowPluginSpec extends PluginSpecification {
 
         file('server/build.gradle') << """
             apply plugin: 'java'
-            apply plugin: 'com.github.johnrengelman.shadow'
+            apply plugin: 'io.github.goooler.shadow'
 
             shadowJar {
                 minimize {
@@ -450,7 +450,7 @@ class ShadowPluginSpec extends PluginSpecification {
 
         file('server/build.gradle') << """
             apply plugin: 'java'
-            apply plugin: 'com.github.johnrengelman.shadow'
+            apply plugin: 'io.github.goooler.shadow'
 
             shadowJar {
                 minimize {
@@ -530,7 +530,7 @@ class ShadowPluginSpec extends PluginSpecification {
 
         file('impl/build.gradle') << """
             apply plugin: 'java-library'
-            apply plugin: 'com.github.johnrengelman.shadow'
+            apply plugin: 'io.github.goooler.shadow'
 
             shadowJar {
                 minimize()
@@ -606,7 +606,7 @@ class ShadowPluginSpec extends PluginSpecification {
 
         file('impl/build.gradle') << """
             apply plugin: 'java-library'
-            apply plugin: 'com.github.johnrengelman.shadow'
+            apply plugin: 'io.github.goooler.shadow'
 
             shadowJar {
                 minimize()
@@ -645,7 +645,7 @@ class ShadowPluginSpec extends PluginSpecification {
 
         file('client/build.gradle') << """
             apply plugin: 'java'
-            apply plugin: 'com.github.johnrengelman.shadow'
+            apply plugin: 'io.github.goooler.shadow'
             repositories { maven { url "${repo.uri}" } }
             dependencies { implementation 'junit:junit:3.8.2' }
 
@@ -702,7 +702,7 @@ class ShadowPluginSpec extends PluginSpecification {
 
         file('client/build.gradle') << """
             apply plugin: 'java'
-            apply plugin: 'com.github.johnrengelman.shadow'
+            apply plugin: 'io.github.goooler.shadow'
             repositories { maven { url "${repo.uri}" } }
             dependencies { implementation 'junit:junit:3.8.2' }
 
@@ -722,7 +722,7 @@ class ShadowPluginSpec extends PluginSpecification {
 
         file('server/build.gradle') << """
             apply plugin: 'java'
-            apply plugin: 'com.github.johnrengelman.shadow'
+            apply plugin: 'io.github.goooler.shadow'
 
             repositories { maven { url "${repo.uri}" } }
             dependencies { implementation project(path: ':client', configuration: 'shadow') }
@@ -1017,7 +1017,7 @@ class ShadowPluginSpec extends PluginSpecification {
 
         file('impl/build.gradle') << """
             apply plugin: 'java-library'
-            apply plugin: 'com.github.johnrengelman.shadow'
+            apply plugin: 'io.github.goooler.shadow'
 
             version = '1.0'
             repositories { maven { url "${repo.uri}" } }

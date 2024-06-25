@@ -203,7 +203,7 @@ class RelocationSpec extends PluginSpecification {
         and: 'App project with shadow, relocation, and project dependency'
         file('app/build.gradle') << """
         apply plugin: 'java'
-        apply plugin: 'com.github.johnrengelman.shadow'
+        apply plugin: 'io.github.goooler.shadow'
         
         repositories { maven { url "${repo.uri}" } }
         dependencies { implementation project(':core') }
