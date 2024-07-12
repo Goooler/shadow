@@ -8,8 +8,8 @@ Read the [User Guide](https://imperceptiblethoughts.com/shadow/)!
 
 ## Current Status
 
-[![Download](https://img.shields.io/gradle-plugin-portal/v/com.github.johnrengelman.shadow)](https://plugins.gradle.org/plugin/com.github.johnrengelman.shadow)
-[![Circle CI](https://circleci.com/gh/johnrengelman/shadow.png?style=badge)](https://app.circleci.com/pipelines/github/johnrengelman/shadow)
+[![Download](https://img.shields.io/gradle-plugin-portal/v/io.github.goooler.shadow)](https://plugins.gradle.org/plugin/io.github.goooler.shadow)
+[![Circle CI](https://circleci.com/gh/Goooler/shadow.png?style=badge)](https://app.circleci.com/pipelines/github/Goooler/shadow)
 
 ## Latest Test Compatibility
 
