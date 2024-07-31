@@ -55,8 +55,9 @@ class ShadowPluginSpec extends PluginSpecification {
     }
 
     @IgnoreIf({
+        def gradleVersion = System.getProperty('org.gradle.util.GradleVersion.current().version')
         // Gradle 8.3 don't support Java 21.
-        version == '8.3' && JavaVersion.current().majorVersion >= '21'
+        gradleVersion == '8.3' && JavaVersion.current().majorVersion >= '21'
     })
     @Unroll
     def 'Compatible with Gradle #version'() {
