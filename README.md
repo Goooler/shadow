@@ -2,6 +2,8 @@
 
 Gradle plugin for creating fat/uber JARs with support for package relocation.
 
+**DEPRECATED** Changes in this repo have been ported to GradleUp. See [GradleUp/shadow](https://github.com/GradleUp/shadow) for info.
+
 ## Documentation
 
 Read the [User Guide](https://imperceptiblethoughts.com/shadow/)!
