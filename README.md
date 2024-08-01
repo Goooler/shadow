@@ -1,7 +1,6 @@
 # Gradle Shadow
 
-Gradle plugin for creating fat/uber JARs with support for package relocation.  
-This is a fork of the upstream repository to publish changes in [johnrengelman/shadow/pull/876](https://github.com/johnrengelman/shadow/pull/876).
+Gradle plugin for creating fat/uber JARs with support for package relocation.
 
 ## Documentation
 
