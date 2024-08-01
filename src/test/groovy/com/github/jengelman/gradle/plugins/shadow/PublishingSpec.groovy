@@ -128,7 +128,7 @@ class PublishingSpec extends PluginSpecification {
 
         file('c/build.gradle') << """
             plugins {
-                id 'io.github.goooler.shadow'
+                id 'com.gradleup.shadow'
             }
             
             dependencies {

@@ -72,7 +72,7 @@ include 'api', 'main'
         build.text = """
 plugins {
     id 'java'
-    id 'io.github.goooler.shadow'
+    id 'com.gradleup.shadow'
 }
 
 repositories {

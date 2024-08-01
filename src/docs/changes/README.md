@@ -65,7 +65,7 @@ Instead, use the `enableRelocation = true` and `relocationPrefix = "<new package
     }
   }
 
-  apply plugin: "io.github.goooler.shadow"
+  apply plugin: "com.gradleup.shadow"
   ```
 
 - [Cédric Champeau](https://github.com/melix) - Support Gradle 7 [#624](https://github.com/johnrengelman/shadow/pull/624)

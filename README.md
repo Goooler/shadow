@@ -9,9 +9,9 @@ Read the [User Guide](https://imperceptiblethoughts.com/shadow/)!
 
 ## Current Status
 
-[![Maven Central](https://img.shields.io/maven-central/v/io.github.goooler.shadow/shadow-gradle-plugin)](https://central.sonatype.com/artifact/io.github.goooler.shadow/shadow-gradle-plugin)
-[![Sonatype Nexus (Snapshots)](https://img.shields.io/nexus/s/io.github.goooler.shadow/shadow-gradle-plugin?&server=https://s01.oss.sonatype.org/)](https://s01.oss.sonatype.org/content/repositories/snapshots/io/github/GradleUp/shadow/shadow-gradle-plugin)
-[![Plugin Portal](https://img.shields.io/gradle-plugin-portal/v/io.github.goooler.shadow)](https://plugins.gradle.org/plugin/io.github.goooler.shadow)
+[![Maven Central](https://img.shields.io/maven-central/v/com.gradleup.shadow/shadow-gradle-plugin)](https://central.sonatype.com/artifact/com.gradleup.shadow/shadow-gradle-plugin)
+[![Sonatype Nexus (Snapshots)](https://img.shields.io/nexus/s/com.gradleup.shadow/shadow-gradle-plugin?&server=https://s01.oss.sonatype.org/)](https://s01.oss.sonatype.org/content/repositories/snapshots/io/github/GradleUp/shadow/shadow-gradle-plugin)
+[![Plugin Portal](https://img.shields.io/gradle-plugin-portal/v/com.gradleup.shadow)](https://plugins.gradle.org/plugin/com.gradleup.shadow)
 [![CI](https://github.com/GradleUp/shadow/actions/workflows/ci.yml/badge.svg?branch=main&event=push)](https://github.com/GradleUp/shadow/actions/workflows/main.yml?query=branch:trunk+event:push)
 [![License](https://img.shields.io/github/license/GradleUp/shadow.svg)](LICENSE)
 

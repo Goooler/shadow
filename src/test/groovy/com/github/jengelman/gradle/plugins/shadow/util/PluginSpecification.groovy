@@ -39,7 +39,7 @@ abstract class PluginSpecification extends Specification {
         return """
         plugins {
             id '${javaPlugin}'
-            id 'io.github.goooler.shadow' version '${SHADOW_VERSION}'
+            id 'com.gradleup.shadow' version '${SHADOW_VERSION}'
         }
 
         version = "1.0"

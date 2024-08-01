@@ -10,7 +10,7 @@ gradlePlugin {
 
     plugins {
         shadowPlugin {
-            id = 'io.github.goooler.shadow'
+            id = 'com.gradleup.shadow'
             implementationClass = 'com.github.jengelman.gradle.plugins.shadow.ShadowPlugin'
             displayName = providers.gradleProperty("POM_NAME").orNull
             description = providers.gradleProperty("POM_DESCRIPTION").orNull
